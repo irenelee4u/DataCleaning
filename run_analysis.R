@@ -41,6 +41,11 @@ names(dataSet) <- features$V2
 datacomb <- cbind(subject,activity)
 data <- cbind(dataSet, datacomb)
 
+#merging labels by activity
+act_group <- factor(data$activity)
+levels(act_group) <- activity_labels[,2]
+data$activity <- act_group
+
 ## 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
 # a vector of mean and std only
 MeanStd <- features$V2[grep("mean\\(\\)|std\\(\\)", features$V2) ]
